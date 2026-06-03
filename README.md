@@ -64,7 +64,6 @@
 
 ```markdown
 ![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Context.puml)
-
 ```
 
 # Задание 2. Проектирование микросервисной архитектуры
@@ -73,12 +72,12 @@
 
 **Диаграмма контейнеров (Containers)**
 
-![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Container.puml)
+![Диаграмма контейнеров](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Container.puml)
 
 
 **Диаграмма компонентов (Components)**
 
-![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Component.puml)
+![Диаграмма компонентов](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Component.puml)
 
 
 Добавьте диаграмму для каждого из выделенных микросервисов.
