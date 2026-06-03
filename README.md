@@ -62,9 +62,8 @@
 
 Замените `Текст ссылки` текстом, который хотите использовать для ссылки. Вместо `URL` вставьте адрес, на который должна вести ссылка. Например:
 
-```markdown
+
 ![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Context.puml)
-```
 
 # Задание 2. Проектирование микросервисной архитектуры
 
@@ -85,7 +84,9 @@
 **Диаграмма кода (Code)**
 
 ![Диаграмма пользователя](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/User_code.puml)
+
 ![Диаграмма сенсора](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Sensor_code.puml)
+
 ![Диаграмма подписки](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Subscriprion_code.puml)
 Добавьте одну диаграмму или несколько.
 

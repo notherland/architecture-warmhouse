@@ -1,4 +1,4 @@
-pip install mkdocs@startuml
+@startuml
 title Warmhouse Subscription Management Code Diagram
 
 top to bottom direction
@@ -21,5 +21,7 @@ class UserSubscription {
   +void activate()
   +void cancel()
 }
+
+UserSubscription "1" -- "0..*" Subscription : has
 
 @enduml

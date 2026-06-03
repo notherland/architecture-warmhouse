@@ -1,4 +1,4 @@
-pip install mkdocs@startuml
+@startuml
 title Warmhouse User Management Code Diagram
 
 top to bottom direction

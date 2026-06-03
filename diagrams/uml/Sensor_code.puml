@@ -34,4 +34,8 @@ class SmartDevice {
     +Enum Status
 }
 
+SmartDevice "1" -- "0..*" TemperatureSensor : has
+SmartDevice "1" -- "0..*" Lock : has
+SmartDevice "1" -- "0..*" Camera : has
+
 @enduml
