@@ -63,7 +63,7 @@
 Замените `Текст ссылки` текстом, который хотите использовать для ссылки. Вместо `URL` вставьте адрес, на который должна вести ссылка. Например:
 
 ```markdown
-[Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Context.puml)
+![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Context.puml)
 
 ```
 
@@ -73,27 +73,27 @@
 
 **Диаграмма контейнеров (Containers)**
 
-[Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Container.puml)
+![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Container.puml)
 
 
 **Диаграмма компонентов (Components)**
 
-[Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Component.puml)
+![Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Component.puml)
 
 
 Добавьте диаграмму для каждого из выделенных микросервисов.
 
 **Диаграмма кода (Code)**
 
-[Диаграмма пользователя](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/User_code.puml)
-[Диаграмма сенсора](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Sensor_code.puml)
-[Диаграмма подписки](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Subscription_code.puml)
+![Диаграмма пользователя](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/User_code.puml)
+![Диаграмма сенсора](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Sensor_code.puml)
+![Диаграмма подписки](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/Subscriprion_code.puml)
 Добавьте одну диаграмму или несколько.
 
 # Задание 3. Разработка ER-диаграммы
 
 Добавьте сюда ER-диаграмму. Она должна отражать ключевые сущности системы, их атрибуты и тип связей между ними.
-[Диаграмма сущностей](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/ER_diagram.puml)
+![Диаграмма сущностей](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/notherland/architecture-warmhouse/refs/heads/warmhouse/diagrams/uml/ER_diagram.puml)
 
 
 # Задание 4. Создание и документирование API
