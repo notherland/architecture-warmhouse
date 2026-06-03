@@ -6,7 +6,6 @@ top to bottom direction
 !include <C4/C4_Container>
 
 class Subscription {
-  +String id
   +String name
   +Float cost
   +String interval

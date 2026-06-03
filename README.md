@@ -58,14 +58,13 @@
 
 Чтобы добавить ссылку в файл Readme.md, нужно использовать синтаксис Markdown. Это делают так:
 
-```markdown
-[Текст ссылки](URL)
-```
+```markdown```
 
 Замените `Текст ссылки` текстом, который хотите использовать для ссылки. Вместо `URL` вставьте адрес, на который должна вести ссылка. Например:
 
 ```markdown
-[Посетите Яндекс](https://ya.ru/)
+[Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Context.puml)
+
 ```
 
 # Задание 2. Проектирование микросервисной архитектуры
@@ -74,29 +73,43 @@
 
 **Диаграмма контейнеров (Containers)**
 
-Добавьте диаграмму.
+[Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Container.puml)
+
 
 **Диаграмма компонентов (Components)**
+
+[Диаграмма контекста](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Component.puml)
+
 
 Добавьте диаграмму для каждого из выделенных микросервисов.
 
 **Диаграмма кода (Code)**
 
+[Диаграмма пользователя](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/User_code.puml)
+[Диаграмма сенсора](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Sensor_code.puml)
+[Диаграмма подписки](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/Subscription_code.puml)
 Добавьте одну диаграмму или несколько.
 
 # Задание 3. Разработка ER-диаграммы
 
 Добавьте сюда ER-диаграмму. Она должна отражать ключевые сущности системы, их атрибуты и тип связей между ними.
+[Диаграмма сущностей](https://www.plantuml.com/plantuml/proxy?src=https://github.com/notherland/architecture-warmhouse/blob/warmhouse/diagrams/uml/ER_diagram.puml)
+
 
 # Задание 4. Создание и документирование API
 
 ### 1. Тип API
 
-Укажите, какой тип API вы будете использовать для взаимодействия микросервисов. Объясните своё решение.
+RESTApi, т.к. учитывая что в старой реализации он был использован можно предположить что команда умеет с ним работать. Также нет необходимости хранить состояние датчиков, достаточно опрашивать их при запросе пользователя
 
 ### 2. Документация API
 
 Здесь приложите ссылки на документацию API для микросервисов, которые вы спроектировали в первой части проектной работы. Для документирования используйте Swagger/OpenAPI или AsyncAPI.
+
+[Документация сервиса управления устройствами](https://github.com/notherland/architecture-warmhouse/blob/warmhouse/apps/smart_home/device.yaml)
+[Документация сервиса управления пользователями](https://github.com/notherland/architecture-warmhouse/blob/warmhouse/apps/smart_home/subscription.yaml)
+[Документация сервиса управления подписками](https://github.com/notherland/architecture-warmhouse/blob/warmhouse/apps/smart_home/user.yaml)
+
 
 # Задание 5. Работа с docker и docker-compose
 
