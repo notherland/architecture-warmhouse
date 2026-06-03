@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Subscription Management API
-  description: API для управления пользователями.
+  description: API для управления подписками.
   version: 1.0.0
 
 paths:
