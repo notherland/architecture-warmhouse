@@ -1,0 +1,65 @@
+@startuml
+title WarmHouse Component Diagram
+
+top to bottom direction
+
+!include <C4/C4_Component>
+
+Container_Boundary(WarmHouseSensors, "Система Управления датчиками и пользователями") {
+  Container(SensorApp, "Сервис управления датчиками", "Go", "Обрабатывает запросы создания/управления датчиками")
+  Container(UserApp, "Сервис управления пользователем", "Go", "Управляет пользователем и подпиской")
+    Container(PaymentService, "Сервис обработки платежей", "Go", "Обрабатывает платежи подписок")
+  Container(SubscriptionApp, "Сервис управления подписками", "Go", "Обрабатывает платежи подписок")
+  Container(Database, "Database", "PostgreSQL", "Хранит данные о пользователях, подписках и устройствах")
+}
+
+Container(UserApp, "Web Application", "Java, Spring") {
+  Component(UserController, "UserController", "Управляет профилем пользователя")
+  Component(AuthController, "AuthController", "Управляет авторизацей пользователя")
+  Component(UserServiceLayer, "User Service Layer", "Бизнес логика")
+  Component(UserRepositoryLayer, "User Repository Layer", "Логика доступа к данным")
+}
+
+Container(SubscriptionApp, "Web Application", "Java, Spring") {
+  Component(UserSubscriptionController, "UserSubscriptionController", "Управляет подписками пользователя")
+  Component(SubscriptionController, "SubscriptionController", "Позволяет администратору изменять условия подписок")
+  Component(UserController, "UserController", "Управляет профилем пользователя")
+  Component(AuthController, "AuthController", "Управляет авторизацей пользователя")
+  Component(SubscriptionServiceLayer, "Subscription Service Layer", "Бизнес логика")
+  Component(UserRepositoryLayer, "User Repository Layer", "Логика доступа к данным")
+}
+
+Container(SensorApp, "Web Application", "Java, Spring") {
+  Component(SensorController, "SensorController", "Добавляет новые устройства и позволяет получать список устройств пользователя")
+  Component(TemperatureController, "TemperatureController", "Управляет отоплением")
+  Component(LockController, "LockController", "Управляет воротами")
+  Component(CamController, "CamController", "Управляет отоплением")
+  Component(SensorServiceLayer, "Sensor Service Layer", "Бизнес логика")
+  Component(SensorRepositoryLayer, "Repository Layer", "Логика доступа к данным")
+}
+
+System_Ext(sensor, "Sensor System", "Умные устройства")
+System_Ext(bank, "Bank System", "Внешняя банковская система для выполнения платежей")
+
+Rel(SensorController,SensorServiceLayer,"Вызывает бизнес логику")
+Rel(TemperatureController,SensorServiceLayer,"Вызывает бизнес логику")
+Rel(LockController,SensorServiceLayer,"Вызывает бизнес логику")
+Rel(CamController,SensorServiceLayer,"Вызывает бизнес логику")
+Rel(SensorServiceLayer,SensorRepositoryLayer,"Reads/Writes data")
+Rel(SensorServiceLayer,sensor,"Опрашивает/заменяет состояния устройств")
+Rel(SensorRepositoryLayer,Database,"Просматривает доступные устройства")
+
+Rel(UserController,UserServiceLayer,"Вызывает бизнес логику")
+Rel(AuthController,UserServiceLayer,"Вызывает бизнес логику")
+
+Rel(SubscriptionController,SubscriptionServiceLayer,"Вызывает бизнес логику")
+Rel(UserSubscriptionController,SubscriptionServiceLayer,"Вызывает бизнес логику")
+Rel(SubscriptionServiceLayer,PaymentService, "Обрабатывает платежи")
+
+Rel(UserServiceLayer,UserRepositoryLayer,"Читает/пишет данные"))
+Rel(UserRepositoryLayer,Database,"Читает/пишет данные")
+Rel(SubscriptionServiceLayer,bank, "Обрабатывает платежи")
+Rel(SubscriptionServiceLayer,Database, "Читает/пишет данные")
+
+
+@enduml

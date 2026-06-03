@@ -1,0 +1,37 @@
+@startuml
+title FitLife Membership Management Code Diagram
+
+top to bottom direction
+
+!include <C4/C4_Container>
+
+class Camera {
+  +UUID Id
+  +String name
+  +String Status
+}
+
+class Lock {
+  +UUID Id
+  +String name
+  +String Status
+  +Boolean isActive
+}
+
+class TemperatureSensor {
+   +UUID Id
+   +String name
+   +String Status
+   +Int Temperature
+ }
+
+
+
+class SmartDevice {
+    +UUID UserId
+    +UUID Id
+    +Enum type
+    +Enum Status
+}
+
+@enduml
