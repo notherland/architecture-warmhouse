@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  title: User Management API
+  description: API для управления пользователями.
+
+paths:
+  /users:
+    post:
+      summary: Создать нового пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Пользователь создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Неверные данные (например, email уже существует)
+  /users/{userId}:
+    put:
+      summary: Обновить пользователя по ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Уникальный идентификатор пользователя
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Данные пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+    get:
+      summary: Получить пользователя по ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Уникальный идентификатор пользователя
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+    delete:
+      summary: Удалить пользователя
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Удаление прошло успешно (нет контента)
+        '404':
+          description: Пользователь не найден
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Иван Петров"
+        email:
+          type: string
+          format: email
+          example: "ivan@example.com"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-15T12:30:00Z"
+      required:
+        - name
+        - email

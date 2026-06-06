@@ -1,0 +1,268 @@
+openapi: 3.0.0
+info:
+  title: SmartDevices Management API
+  description: API для управления устройствами.
+  version: 1.0.0
+
+paths:
+  /smartDevice:
+    post:
+      summary: Создать новое устройство для пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartDevice'
+      responses:
+        '200':
+          description: Данные пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartDevice'
+        '400':
+          description: Неверные данные
+
+    get:
+      summary: Получить устройства по ID пользователя
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          description: Уникальный идентификатор пользователя
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные устройства
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartDevice'
+        '404':
+          description: Пользователь не найден
+          
+          
+  /smartDevices/{id}:
+    put:
+      summary: Обновить устройство
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Уникальный идентификатор устройства
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartDevice'
+      responses:
+        '200':
+          description: Данные устройства
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartDevice'
+        '404':
+          description: Устройство не найдена
+
+  /camers/{camId}:
+    put:
+      summary: Изменить состояние камеры
+      parameters:
+        - name: camId
+          in: path
+          required: true
+          description: Уникальный идентификатор подписки
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Camera'
+      responses:
+        '200':
+          description: Данные камеры
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Camera'
+        '404':
+          description: Подписка не найдена
+
+    get:
+      summary: Получить камеру по ID
+      parameters:
+        - name: camId
+          in: path
+          required: true
+          description: Уникальный идентификатор камеры
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные камеры
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Camera'
+        '404':
+          description: Камера не найдена
+
+  /lock/{lockId}:
+    put:
+      summary: Изменить состояние замка
+      parameters:
+        - name: lockId
+          in: path
+          required: true
+          description: Уникальный идентификатор замка
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lock'
+      responses:
+        '200':
+          description: Данные замка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lock'
+        '404':
+          description: Замок не найден
+
+    get:
+      summary: Получить замок по ID
+      parameters:
+        - name: lockId
+          in: path
+          required: true
+          description: Уникальный идентификатор замка
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные замка
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lock'
+        '404':
+          description: Камера не найдена
+
+  /tempSensor/{camId}:
+    put:
+      summary: Изменить состояние отопления
+      parameters:
+        - name: camId
+          in: path
+          required: true
+          description: Уникальный идентификатор модуля отопления
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemperatureSensor'
+      responses:
+        '200':
+          description: Данные модуля отопления
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureSensor'
+        '404':
+          description: Модуль отопления не найдена
+
+    get:
+      summary: Получить камеру по ID
+      parameters:
+        - name: camId
+          in: path
+          required: true
+          description: Уникальный идентификатор камеры
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные камеры
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Camera'
+        '404':
+          description: Камера не найдена
+components:
+  schemas:
+    Camera:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Cam1"
+        status:
+          $ref: "#/components/schemas/SmartDeviceStatusEnum"
+
+
+    Lock:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Lock1"
+        status:
+          $ref: "#/components/schemas/SmartDeviceStatusEnum"
+        isActive:
+          type: boolean
+
+    TemperatureSensor:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Sensor1"
+        status:
+          $ref: "#/components/schemas/SmartDeviceStatusEnum"
+        Temperature:
+          type: integer
+
+    SmartDevice:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        status:
+          $ref: "#/components/schemas/SmartDeviceStatusEnum"
+        type:
+          $ref: "#/components/schemas/SmartDeviceTypeEnum"
+
+    SmartDeviceStatusEnum:
+      type: string
+      enum:
+        - ACTIVE
+        - PENDING
+        - ERROR
+        - OFF
+      description: Статус устройства
+
+    SmartDeviceTypeEnum:
+      type: string
+      enum:
+        - CAM
+        - LOCK
+        - HEAT
+      description: Тип устройства

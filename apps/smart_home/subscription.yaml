@@ -1,0 +1,209 @@
+openapi: 3.0.0
+info:
+  title: Subscription Management API
+  description: API для управления подписками.
+  version: 1.0.0
+
+paths:
+  /userSubscriptions:
+    post:
+      summary: Создать новую подписку для пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSubscription'
+      responses:
+        '201':
+          description: Пользователь создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSubscription'
+        '400':
+          description: Неверные данные
+
+  /userSubscriptions/{subId}:
+    put:
+      summary: Обновить подписку по ID
+      parameters:
+        - name: subId
+          in: path
+          required: true
+          description: Уникальный идентификатор подписки
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSubscription'
+      responses:
+        '200':
+          description: Данные пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSubscription'
+        '404':
+          description: Подписка не найдена
+    get:
+      summary: Получить подписку по ID
+      parameters:
+        - name: subId
+          in: path
+          required: true
+          description: Уникальный идентификатор подписки
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSubscription'
+        '404':
+          description: Пользователь не найден
+
+  /subscriptions:
+    post:
+      summary: Создать новый план подписки
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          description: План подписки создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Неверные данные
+
+  /users/{subId}:
+    put:
+      summary: Обновить план подписки по ID
+      parameters:
+        - name: subId
+          in: path
+          required: true
+          description: Уникальный идентификатор подписки
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '200':
+          description: Данные подписки
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '404':
+          description: Подписка не найдена
+
+    get:
+      summary: Получить подписку по ID
+      parameters:
+        - name: subId
+          in: path
+          required: true
+          description: Уникальный идентификатор подписки
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Данные подписки
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '404':
+          description: Пользователь не найден
+    delete:
+      summary: Удалить подписку
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Удаление прошло успешно (нет контента)
+        '404':
+          description: Подписка не найден
+
+components:
+  schemas:
+    UserSubscription:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        subId:
+          type: string
+          format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        userCost:
+          type: number
+          format: float
+          example: "100.5"
+        status:
+          $ref: "#/components/schemas/SubStatusEnum"
+        startDate:
+          type: string
+          format: date
+          example: "2024-01-15"
+        endDate:
+          type: string
+          format: date
+          example: "2024-01-15"
+      required:
+        - id
+        - userId
+        - subId
+
+
+    Subscription:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Годовая подписка"
+        cost:
+          type: number
+          format: float
+          example: "100.5"
+        status:
+          $ref: "#/components/schemas/SubStatusEnum"
+        interval:
+          type: string
+          example: "1 year"
+      required:
+        - id
+        - userId
+        - subId
+
+    SubStatusEnum:
+      type: string
+      enum:
+        - PENDING
+        - PROCESSING
+        - ACTIVE
+        - PAUSED
+        - CANCELLED
+      description: Статус подписки пользователя

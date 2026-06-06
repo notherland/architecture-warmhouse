@@ -1,0 +1,44 @@
+@startuml
+
+
+entity "users" as users {
+    * id : uuid <<PK>>
+    --
+    * name : varchar(255)
+    * email : varchar(255)
+}
+
+entity "user_subscriptions" as user_subscriptions {
+    * id : uuid <<PK>>
+    --
+    * subscription_id : uuid <<FK>>
+    * user_id : uuid <<FK>>
+    * user_cost : float
+    * start_date : date
+    * end_date : date
+    * status : varchar(255)
+}
+
+entity "subscriptions" as subscriptions {
+    * id : uuid <<PK>>
+    --
+    * cost : float
+    * interval: varchar(255)
+}
+
+users ||--o{ user_subscriptions : "has"
+
+"subscriptions" ||--o{ user_subscriptions : "has"
+
+entity "smart_device" as smart_device {
+    * id : uuid <<PK>>
+    --
+    * user_id : uuid
+    * device_id : uuid
+    * type : varchar(255)
+     * status : varchar(255)
+ }
+
+"users" ||--o{ "smart_device" : "has"
+
+@enduml

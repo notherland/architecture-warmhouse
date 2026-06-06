@@ -1,0 +1,37 @@
+@startuml
+title WarmHouse Container Diagram
+
+top to bottom direction
+
+!include <C4/C4_Container>
+
+Person(user, "Пользователь", "Пользователь системы Теплый Дом")
+Person(admin, "Администратор", "Администратор, управляющий системой")
+
+System(WarmHouseSensors, "WarmHouse System", "Система управления датчиками и подписками")
+
+Container_Boundary(WarmHouseSensors, "Система управления датчиками и подписками") {
+  Container(SensorApp, "Сервис управления датчиками", "Go", "Обрабатывает запросы создания/управления датчиками")
+  Container(UserApp, "Сервис управления пользователем", "Go", "Управляет пользователем")
+  Container(SubscriptionApp, "Сервис управления подписками", "Go", "Управляет подписками")
+  Container(PaymentService, "PaymentService", "Go", "Обрабатывает платежи подписок")
+  Container(Database, "Database", "PostgreSQL", "Хранит данные о пользователях и их подписках")
+}
+
+
+System_Ext(bank, "Bank System", "Внешняя банковская система для выполнения платежей")
+System_Ext(sensor, "Sensor System", "Умные устройства")
+
+Rel(SensorApp, Database, "Сохраняет данные о подписках пользователя")
+Rel(user, SensorApp, "Управляет умными устройствами")
+Rel(SensorApp,sensor,"Опрос/Изменения состояний устройств")
+Rel(user, UserApp, "Управляет профилем и подписками")
+Rel(admin,SubscriptionApp,"Обновляет условия подписок")
+
+Rel(UserApp,SubscriptionApp,"Сохраняет/читает данные")
+Rel(SubscriptionApp,PaymentService,"Сохраняет/читает данные")
+Rel(SubscriptionApp,Database,"Сохраняет/читает данные")
+Rel(PaymentService,bank,"Опллата подписки")
+
+
+@enduml
